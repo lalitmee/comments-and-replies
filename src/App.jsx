@@ -105,21 +105,23 @@ function App() {
     <div className="mx-auto md:w-full lg:w-8/12 xl:w-8/12 2xl:w-6/12 bg-white p-3">
       <Comment onPost={onPost} editable />
       <div className="mt-4">
-        <div className="flex justify-end">
-          <label>Sort By:</label>
-          <button
-            onClick={() =>
-              setSortType((prev) => (prev === "asc" ? "desc" : "asc"))
-            }
-          >
-            Date and Time{" "}
-            {sortType === "asc" ? (
-              <i className="fa fa-arrow-down"></i>
-            ) : (
-              <i className="fa fa-arrow-up"></i>
-            )}
-          </button>
-        </div>
+        {comments.length && (
+          <div className="flex justify-end">
+            <label>Sort By:</label>
+            <button
+              onClick={() =>
+                setSortType((prev) => (prev === "asc" ? "desc" : "asc"))
+              }
+            >
+              Date and Time{" "}
+              {sortType === "asc" ? (
+                <i className="fa fa-arrow-down"></i>
+              ) : (
+                <i className="fa fa-arrow-up"></i>
+              )}
+            </button>
+          </div>
+        )}
         {comments.map((comment) => (
           <ShowComment
             key={comment.id}
