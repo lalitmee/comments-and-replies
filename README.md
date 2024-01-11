@@ -1,8 +1,53 @@
-# React + Vite
+# comments-and-replies
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Demo](https://lalitmee.github.io/comments-and-replies/)
 
-Currently, two official plugins are available:
+This is a simple application build in [React](https://react.dev) using [Vite](https://vitejs.dev/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description and features
+
+This is a simple comment and replies web application that has the following features:
+
+1. user can comment and the comment will have two fields to be filled up
+
+- name of the user
+- comment of the user
+
+2. user can reply to the comment and the reply will also have two fields same as
+   comment
+
+3. user can edit the comment and the reply
+
+- editing will happen in place
+
+4. application's data will be saved in the local storage
+
+## Running the application locally
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/lalitmee/comments-and-replies.git
+```
+
+2. Install the dependencies
+
+```bash
+npm install
+```
+
+3. Run the application
+
+```bash
+npm run dev
+```
+
+4. Deploy the application
+
+```bash
+npm run deploy
+```
+
+---
+
+<p align="center">Thank you!</p>
