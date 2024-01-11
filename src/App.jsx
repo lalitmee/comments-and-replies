@@ -128,7 +128,7 @@ function App() {
   };
 
   return (
-    <div className="mx-auto md:w-full lg:w-8/12 xl:w-8/12 2xl:w-6/12 bg-white p-3">
+    <div className="mx-auto md:w-full lg:w-8/12 xl:w-8/12 2xl:w-6/12 bg-white p-8">
       <Comment onPost={onPost} editable />
       <div className="mt-4">
         {comments.length > 0 && (
