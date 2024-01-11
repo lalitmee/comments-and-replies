@@ -18,6 +18,7 @@ This is a simple comment and replies web application that has the following feat
 
 3. user can edit the comment and the reply
 
+- user will be allowed to only edit the comment not the name of the user
 - editing will happen in place
 
 4. application's data will be saved in the local storage
