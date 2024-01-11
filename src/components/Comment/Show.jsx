@@ -30,7 +30,7 @@ function ShowComment({ parentId = 0, comment, onSave, onReply, onDelete }) {
   };
 
   const handleSave = () => {
-    onSave(id, editedComment);
+    onSave(id, parentId, editedComment);
     setIsEditing(false);
   };
 

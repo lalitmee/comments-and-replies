@@ -3,6 +3,7 @@ import moment from "moment";
 
 import Comment from "./components/Comment";
 import ShowComment from "./components/Comment/Show";
+import { findChildCommentIndex } from "./utils";
 
 const commentsFromStore = JSON.parse(localStorage.getItem("comments"));
 
@@ -40,19 +41,48 @@ function App() {
     ]);
   };
 
-  const onSave = (id, text) => {
-    setComments(
-      comments.map((comment) => {
-        if (comment.id === id) {
-          return {
-            ...comment,
-            updated: moment(),
-            comment: text,
-          };
-        }
-        return comment;
-      }),
-    );
+  const onSave = (id, parentCommentId, text) => {
+    if (!parentCommentId) {
+      setComments(
+        comments.map((comment) => {
+          if (comment.id === id) {
+            return {
+              ...comment,
+              updated: moment(),
+              comment: text,
+            };
+          }
+          return comment;
+        }),
+      );
+    } else {
+      const { index: indexOfComment } = findChildCommentIndex(
+        id,
+        parentCommentId,
+        comments,
+      );
+      if (indexOfComment !== -1) {
+        setComments(
+          comments.map((comment) => {
+            if (comment.id === parentCommentId) {
+              const childComment = comment.comments[indexOfComment];
+              const modifiedComment = { ...childComment, comment: text };
+              return {
+                ...comment,
+                updated: moment(),
+                comments: comment.comments.map((childComment) => {
+                  if (childComment.id === id) {
+                    return modifiedComment;
+                  }
+                  return childComment;
+                }),
+              };
+            }
+            return comment;
+          }),
+        );
+      }
+    }
   };
 
   const onReply = (id, reply) => {
@@ -78,12 +108,8 @@ function App() {
       comments.splice(indexOfComment, 1);
       setComments([...comments]);
     } else {
-      const parentComment = comments.find(
-        (comment) => comment.id === parentCommentId,
-      );
-      const indexOfComment = parentComment?.comments?.findIndex(
-        (comment) => comment.id === id,
-      );
+      const { index: indexOfComment, parent: parentComment } =
+        findChildCommentIndex(id, parentCommentId, comments);
       if (indexOfComment !== -1) {
         parentComment.comments.splice(indexOfComment, 1);
         setComments(
