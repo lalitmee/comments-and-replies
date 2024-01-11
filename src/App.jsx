@@ -107,7 +107,7 @@ function App() {
       <div className="mt-4">
         {comments.length > 0 && (
           <div className="flex justify-end">
-            <label>Sort By: </label>
+            <label>Sort By:&nbsp;</label>
             <button
               onClick={() =>
                 setSortType((prev) => (prev === "asc" ? "desc" : "asc"))
